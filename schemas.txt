@@ -1,0 +1,28 @@
+
+Plans
++--------------+--------------+------+-----+---------+----------------+
+| Field        | Type         | Null | Key | Default | Extra          |
++--------------+--------------+------+-----+---------+----------------+
+| id           | int          | NO   | PRI | NULL    | auto_increment |
+| name         | varchar(255) | NO   |     | free    |                |
+| storageQuota | int          | NO   |     | 1024    |                |
+| price        | int          | NO   |     | 0       |                |
+| maxFileSize  | int          | NO   |     | 100     |                |
+| numUsers     | int          | NO   |     | 1       |                |
++--------------+--------------+------+-----+---------+----------------+
+
+Users 
++-------------+---------------+------+-----+-------------------+-------------------+
+| Field       | Type          | Null | Key | Default           | Extra             |
++-------------+---------------+------+-----+-------------------+-------------------+
+| id          | int           | NO   | PRI | NULL              | auto_increment    |
+| name        | varchar(255)  | NO   |     | Unknown           |                   |
+| email       | varchar(255)  | NO   | UNI | NULL              |                   |
+| password    | varchar(255)  | NO   |     | NULL              |                   |
+| imageUrl    | varchar(255)  | NO   |     |                   |                   |
+| joinedAt    | timestamp     | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
+| updatedAt   | timestamp     | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
+| lastSeen    | timestamp     | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
+| usedStorage | decimal(16,2) | NO   |     | 0.00              |                   |
+| planId      | int           | NO   | MUL | 1                 |                   |
++-------------+---------------+------+-----+-------------------+-------------------+
