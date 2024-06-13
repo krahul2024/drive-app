@@ -88,4 +88,10 @@ public class User {
         this.usedStorage = usedStorage;
         this.planId = planId;
     }
+     @Override
+    public String toString() {
+        return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", imageUrl="
+                + imageUrl + ", joinedAt=" + joinedAt + ", updatedAt=" + updatedAt + ", lastSeen=" + lastSeen
+                + ", usedStorage=" + usedStorage + ", planId=" + planId + "]";
+    }
 }
