@@ -1,6 +1,6 @@
 package com.drive.model;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public class User {
     private Long id;
@@ -46,20 +46,20 @@ public class User {
     public Timestamp getJoinedAt() {
         return joinedAt;
     }
-    public void setJoinedAt(Timestamp joinedAt) {
-        this.joinedAt = joinedAt;
+    public void setJoinedAt(java.sql.Timestamp timestamp) {
+        this.joinedAt = timestamp;
     }
     public Timestamp getUpdatedAt() {
         return updatedAt;
     }
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setUpdatedAt(java.sql.Timestamp timestamp) {
+        this.updatedAt = timestamp;
     }
     public Timestamp getLastSeen() {
         return lastSeen;
     }
-    public void setLastSeen(Timestamp lastSeen) {
-        this.lastSeen = lastSeen;
+    public void setLastSeen(java.sql.Timestamp timestamp) {
+        this.lastSeen = timestamp;
     }
     public Double getUsedStorage() {
         return usedStorage;
