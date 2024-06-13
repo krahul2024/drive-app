@@ -1,6 +1,7 @@
 all: clean build run 
 
 run:
+	clear 
 	@mvn spring-boot:run
 
 build:
