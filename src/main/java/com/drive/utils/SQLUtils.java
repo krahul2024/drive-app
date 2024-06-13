@@ -2,16 +2,20 @@ package com.drive.utils;
 
 
 public class SQLUtils {
-    public static String PreparedStatement(String statement, Object ...args){
-        StringBuilder sb = new StringBuilder(statement); 
-        for(Object arg : args){
-            int index = sb.indexOf("?"); 
-            if(index == -1){
-                break ; 
+
+    public static String preparedStatement(String statement, Object... args) {
+        StringBuilder sb = new StringBuilder(statement);
+
+        int index = 0;
+        for (Object arg : args) {
+            index = sb.indexOf("?", index);
+            if (index == -1) {
+                break;
             }
-            sb.replace(index, index+1, arg.toString()); 
+            sb.replace(index, index + 1, "'" + arg.toString() + "'");
+            index += arg.toString().length() + 2; // Move index past the inserted value
         }
 
-        return sb.toString(); 
+        return sb.toString();
     }
 }

@@ -28,14 +28,14 @@ public class PlanDao {
         this.insertIntoPlan = new SimpleJdbcInsert(jdbcTemplate).withTableName("plans").usingGeneratedKeyColumns("id");
     }   
 
-    public List<Plan> getAllPlans(){
-        String stmt = "Select * From plans"; 
+    public List<Plan> getPlans(int size, int page){
+        String stmt = "Select * From plans limit " + size +  " offset " + page * size; 
         return jdbcTemplate.query(stmt, (rs, rowNum) -> mapRowToPlan(rs, rowNum));
     }
 
     public Plan getPlanById(Long id){
         String stmt = "Select * From plans where id = ?"; 
-        stmt = SQLUtils.PreparedStatement(stmt,id);
+        stmt = SQLUtils.preparedStatement(stmt,id);
         try {
             return jdbcTemplate.queryForObject(stmt,(rs, rowNum) -> mapRowToPlan(rs, rowNum));
         } catch(EmptyResultDataAccessException e) {
@@ -54,6 +54,17 @@ public class PlanDao {
         return insertIntoPlan.executeAndReturnKey(params).longValue();
     }
 
+    public int updatePlan(Plan plan){
+        String stmt = "Update plans set name=?, storageQuota=?, price=?, maxFileSize=?, numUsers=? where id=?";
+        stmt = SQLUtils.preparedStatement(stmt, plan.getName(), plan.getStorageQuota(), plan.getPrice(), plan.getMaxFileSize(), plan.getNumUsers(), plan.getId());
+        return jdbcTemplate.update(stmt); 
+    }
+
+    public int deletePlan(Long id){
+        String stmt = "Delete From plans where id = ?";
+        stmt = SQLUtils.preparedStatement(stmt, id);
+        return jdbcTemplate.update(stmt);
+    }
 
 
 

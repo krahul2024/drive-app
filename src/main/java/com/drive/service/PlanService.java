@@ -18,8 +18,8 @@ public class PlanService {
         this.planDao = planDao; 
     }
 
-    public List<Plan> getAllPlans(){
-        return planDao.getAllPlans();
+    public List<Plan> getPlans(int size, int page){
+        return planDao.getPlans(size, page);
     }
 
     public Plan getPlanById(Long id){
@@ -32,4 +32,19 @@ public class PlanService {
         Plan newPlan = planDao.getPlanById(planId); 
         return newPlan;
     }
+
+    public Plan updatePlan(Plan plan){
+        int numRows = planDao.updatePlan(plan);
+        if(numRows == 0){
+            return null;
+        } else {
+            return planDao.getPlanById(plan.getId());
+        }
+    }
+
+    public int deletePlan(Long id){
+        return planDao.deletePlan(id);
+    }
+
 }
+

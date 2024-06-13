@@ -43,4 +43,8 @@ public class Plan {
     public void setNumUsers(Integer numUsers) {
         this.numUsers = numUsers;
     } 
+
+    public String toString(){
+        return "Plan [id=" + id + ", name=" + name + ", storageQuota=" + storageQuota + ", price=" + price + ", maxFileSize=" + maxFileSize + ", numUsers=" + numUsers + "]";
+    }
 }
