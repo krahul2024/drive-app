@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.drive.model.User;
 import com.drive.service.UserService;
 import com.drive.utils.Status;
+import com.drive.utils.response.LoginResponse;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -39,10 +40,11 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody LoginCreds loginCreds, HttpServletResponse response){
-        Status.LoginStatus loggedIn = userService.login(loginCreds.getEmail(), loginCreds.getPassword()); 
+        LoginResponse loggedIn = userService.login(loginCreds.getEmail(), loginCreds.getPassword()); 
         Map<String, Object> responseBody = new HashMap<>(); 
-        responseBody.put("status", loggedIn.getMessage()); 
-        if(loggedIn == Status.LoginStatus.SUCCESS){
+        responseBody.put("status", loggedIn.getStatus().getMessage()); 
+        responseBody.put("user", loggedIn.getUser());
+        if(loggedIn.getStatus() == Status.LoginStatus.SUCCESS){
             Cookie cookie = new Cookie("auth_token", loginCreds.getEmail());
             cookie.setMaxAge(3600 * 24 * 7);
             cookie.setPath("/"); 
@@ -50,7 +52,7 @@ public class AuthController {
             cookie.setHttpOnly(true);
             response.addCookie(cookie);
         }
-        return new ResponseEntity<>(responseBody, loggedIn.getStatusCode());
+        return new ResponseEntity<>(responseBody, loggedIn.getStatus().getStatusCode());
     }
 
     @GetMapping("/logout")

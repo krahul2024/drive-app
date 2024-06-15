@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+    background-color: #111827;
+    color: #e7e0e0d5;            
+    font-family: 'Ubuntu Mono', monospace;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  a {
+    color: #f7f2f2;            
+  }
+  
+  h1, h2, h3, h4, h5, h6, p, span {
+    color: #e3e3e3;           
+  }
+  

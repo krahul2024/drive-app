@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.drive.dao.UserDao;
 import com.drive.model.User;
 import com.drive.utils.Status;
+import com.drive.utils.response.LoginResponse;
 
 @Service
 public class UserService {
@@ -28,42 +29,16 @@ public class UserService {
         return Status.RegisterStatus.SUCCESS;
     }
 
-    public Status.LoginStatus login(String email, String password){
+    public LoginResponse login(String email, String password){
         User existingUser = userDao.getUserByEmail(email); 
         if(existingUser == null){
-            return Status.LoginStatus.USER_NOT_FOUND;
+            return new LoginResponse(Status.LoginStatus.USER_NOT_FOUND, null);
         }
         if(!existingUser.getPassword().equals(password)){
-            return Status.LoginStatus.INVALID_CREDENTIALS;
+            return new LoginResponse(Status.LoginStatus.INVALID_CREDENTIALS, null);
         }
-        return Status.LoginStatus.SUCCESS;
-    }
-
-    // public User getUserByEmail
-}
-
-class LoginResponse {
-    private Status.LoginStatus status; 
-    private User user; 
-
-    public LoginResponse(Status.LoginStatus status, User user){
-        this.status = status; 
-        this.user = user; 
-    }
-
-    public Status.LoginStatus getStatus() {
-        return status;
-    }           
-
-    public void setStatus(Status.LoginStatus status) {
-        this.status = status;
-    }   
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+        existingUser.setPassword("");
+        return new LoginResponse(Status.LoginStatus.SUCCESS, existingUser); 
     }
 }
+
