@@ -1,14 +1,15 @@
-import { UserState, UserActionTypes, SET_USER, UPDATE_USER } from "../src/types/user";
+import { UserState, UserActionTypes, SET_USER, UPDATE_USER } from "../types/user";
 
 const initialState : UserState = {
     user : null, 
+    loggedIn : false,
 }; 
 
 const userReducer = (state = initialState, action : UserActionTypes) : UserState => {
     switch (action.type) {
         case SET_USER : 
             return {
-                ...state, user : action.payload, 
+                ...state, user : action.payload.user, loggedIn : action.payload.loggedIn,  
             }; 
         case UPDATE_USER : 
             return {

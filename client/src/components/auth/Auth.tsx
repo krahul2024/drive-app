@@ -31,12 +31,13 @@ const AuthPage: React.FC = () => {
             try {
                 const response = await axios.post('/auth/login', formData);
                 const user : User = response?.data?.user; 
-                dispatch({type : SET_USER, payload : user}); 
+                dispatch({type : SET_USER, payload : {user : user, loggedIn : true}}); 
+
                 if(user) navigate('/'); 
             } catch (error) {
                 console.log((error as any).response.data);
             }
-
+            
         }
         else {  // Handle registration form submission 
             try {
