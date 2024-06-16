@@ -45,7 +45,7 @@ public class AuthController {
         responseBody.put("status", loggedIn.getStatus().getMessage()); 
         responseBody.put("user", loggedIn.getUser());
         if(loggedIn.getStatus() == Status.LoginStatus.SUCCESS){
-            Cookie cookie = new Cookie("auth_token", loginCreds.getEmail());
+            Cookie cookie = new Cookie("authToken", loginCreds.getEmail());
             cookie.setMaxAge(3600 * 24 * 7);
             cookie.setPath("/"); 
             cookie.setSecure(false);

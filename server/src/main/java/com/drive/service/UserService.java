@@ -40,5 +40,9 @@ public class UserService {
         existingUser.setPassword("");
         return new LoginResponse(Status.LoginStatus.SUCCESS, existingUser); 
     }
+
+    public User getUserByEmail(String email){
+        return userDao.getUserByEmail(email); 
+    }
 }
 
