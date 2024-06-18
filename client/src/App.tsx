@@ -35,19 +35,21 @@ const App: React.FC = () => {
   return (
     <Router>
       <div>
-      <div className="flex flex-col h-screen">
-  <div className="w-full">
-    <Nav />
-  </div>
-  <div className="flex">
-    <div className="w-[220px] md:w-[250px] lg:w-[280px]">
-      <SideBar />
-    </div>
-    <div className="flex-grow mt-[72px]">
-        <Main />
-    </div>
-  </div>
-</div>
+        <div className="flex flex-col">
+          <div className="w-full">
+            <Nav />
+          </div>
+          {loggedIn && (
+          <div className="flex">
+            <div className="w-[220px] md:w-[250px] lg:w-[280px]">
+              <SideBar />
+            </div>
+            <div className="flex-grow mt-[72px]">
+              <Main />
+            </div>
+          </div>
+          )}
+        </div>
 
         <div>
           <Routes>

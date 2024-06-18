@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import profile from '../../assets/profile-pic.webp';
 import { RootState } from '../../store';
-import { User } from '../../types/user';
-import { useSelector } from 'react-redux';
+import { SET_USER, User } from '../../types/user';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 
 const Navbar: React.FC = () => {
   const user: User | null = useSelector((state: RootState) => state.user.user);
   const loggedIn : boolean = useSelector((state: RootState) => state.user.loggedIn);
-  console.log({ user })
+  const dispatch = useDispatch();
+  const navigate = useNavigate(); 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   console.log({ loggedIn })
@@ -19,6 +21,21 @@ const Navbar: React.FC = () => {
       if (isMenuOpen) setIsMenuOpen(false);
     }, 3000)
   };
+
+
+  const logout = async(event : React.MouseEvent<HTMLButtonElement>) => {
+      event.preventDefault(); 
+      try{
+        const response = await axios.get('/auth/logout', { withCredentials : true }); 
+        if(response){
+          dispatch({type : SET_USER, payload : {user : null, loggedIn : false}}); 
+          navigate('/auth'); 
+        }
+      } catch(error : any){
+        console.log(error.response); 
+      }
+  }; 
+
   return (
     <nav className="bg-gray-900 p-3 fixed top-0 w-full">
       <div className="md:mx-4 lg:mx-8 2xl:mx-12">
@@ -51,7 +68,7 @@ const Navbar: React.FC = () => {
                     <>
                       <Link to="/profile" className="block px-4 py-1.5 rounded-sm hover:bg-gray-800">Profile</Link>
                       <Link to="/settings" className="block px-4 py-1.5 rounded-sm hover:bg-gray-800">Settings</Link>
-                      <Link to="/logout" className="block px-4 py-1.5 rounded-sm hover:bg-gray-800">Logout</Link>
+                      <button onClick={logout} className="w-full flex justify-start px-4 py-1.5 rounded-sm hover:bg-gray-800">Logout</button>
                     </>
                   ) : (
                     <>
