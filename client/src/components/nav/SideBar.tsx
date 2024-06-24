@@ -8,7 +8,7 @@ const SideBar: React.FC = () => {
     const freePercentage = 100 - usedPercentage;
 
     return (
-        <div className="p-1 flex flex-col w-[220px] md:w-[250px] lg:w-[280px] mt-[70px] fixed">
+        <div className="p-1 flex flex-col w-[220px] md:w-[250px] lg:w-[280px] mt-[60px] fixed">
             <div className="flex items-center justify-start ml-4 mb-4 w-full cursor-pointer">
                 <div className="flex flex-col items-center justify-center w-[55%] px-6 py-3 bg-slate-800 rounded-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 24" strokeWidth={2.1} stroke="#e3e3e3" className="size-7">

@@ -1,20 +1,21 @@
 import { useState } from 'react';
 import axios from 'axios';
-import {SET_USER, User}from '../../types/user'; 
+import { SET_USER, User } from '../../types/user';
 import { AppDispatch } from '../../store';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const AuthPage: React.FC = () => {
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
     const [isLogin, setIsLogin] = useState(true);
     const [formData, setFormData] = useState({
         name: '', email: '', password: ''
     });
-    const dispatch : AppDispatch = useDispatch(); 
+    const [status, setStatus] = useState(''); 
+    const dispatch: AppDispatch = useDispatch();
 
     const toggleMode = () => {
-        setIsLogin(prevState => !prevState);
+        setIsLogin((prevState: boolean) => !prevState);
     };
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,29 +27,33 @@ const AuthPage: React.FC = () => {
 
     const handleFormSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        console.log({formData}); 
+        console.log({ formData });
         if (isLogin) {  // Handle login form submission 
             try {
                 const response = await axios.post('/auth/login', formData);
-                const user : User = response?.data?.user; 
-                dispatch({type : SET_USER, payload : {user : user, loggedIn : true}}); 
-
-                if(user) navigate('/'); 
-            } catch (error) {
-                console.log((error as any).response.data);
+                const user: User = response?.data?.user;
+                dispatch({ type: SET_USER, payload: { user: user, loggedIn: true } });
+                if (user) navigate('/');
+            } catch (error: any) {
+                setStatus(error.response.data.status); 
+                console.log(error.response.data);
             }
-            
         }
         else {  // Handle registration form submission 
             try {
                 const response = await axios.post('/auth/register', formData);
+                setTimeout(() => {
+                    alert(response.data.status);
+                }, 1000);
                 console.log(response);
-            } catch (error) {
+                setIsLogin(true);
+            } catch (error: any) {
+                setStatus(error.response.data.status);
                 console.log(error);
             }
 
         }
-    }; 
+    };
 
 
     return (
@@ -94,7 +99,8 @@ const AuthPage: React.FC = () => {
                             className="w-full outline-none bg-slate-700 p-2 border border-gray-800 rounded-md"
                         />
 
-                        <div className="flex justify-start">
+                        <div className="flex flex-col justify-start">
+                            <div className='p-1 text-red-500 brightness-125'>{status}</div>
                             <button className="bg-blue-500 hover:bg-blue-600 py-1 px-4 w-full rounded-xl"
                                 onClick={handleFormSubmit}
                             >

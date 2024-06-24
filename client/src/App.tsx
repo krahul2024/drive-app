@@ -36,15 +36,15 @@ const App: React.FC = () => {
     <Router>
       <div>
         <div className="flex flex-col">
-          <div className="w-full">
+          <div className="w-full bg-secondary">
             <Nav />
           </div>
           {loggedIn && (
-          <div className="flex">
-            <div className="w-[220px] md:w-[250px] lg:w-[280px]">
+          <div className="flex overflow-x-auto w-full">
+            <div className="w-[220px] md:w-[250px] lg:w-[280px] flex-shrink-0 bg-secondary">
               <SideBar />
             </div>
-            <div className="flex-grow mt-[72px]">
+            <div className="flex-grow mt-[60px] h-[calc(100vh-60px)] rounded-xl bg-primary overflow-auto">
               <Main />
             </div>
           </div>
@@ -57,7 +57,7 @@ const App: React.FC = () => {
               <Route path="*" element={<Auth />} />
             ) : (<>
               <Route path="/"></Route>
-              <Route path="/auth" element={<div><h1>Home Page</h1></div>} />
+              <Route path="/auth" element={<div></div>} />
               <Route path="*" element={<Error />} />
             </>)}
           </Routes>

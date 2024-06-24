@@ -6,7 +6,7 @@
 
 
 body {
-    background-color: #111827;
+    background-color: #0c0f18;
     color: #e7e0e0d5;            
     font-family: 'Ubuntu Mono', monospace;
     margin: 0;
@@ -21,4 +21,22 @@ body {
   h1, h2, h3, h4, h5, h6, p, span {
     color: #e3e3e3;           
   }
-  
+
+
+::-webkit-scrollbar {
+  width: 6px; 
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #4f4f50; 
+  border-radius: 5px; 
+}
+
+::-webkit-scrollbar-track {
+  background-color: #1b1d27;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent; 
+}

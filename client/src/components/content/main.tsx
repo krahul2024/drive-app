@@ -1,11 +1,18 @@
+import { Filter } from "./filter";
+import { ListItem } from "./listItem";
+
 const Main: React.FC = () => {
-    return (
-      <>
-        <div className="border border-gray-800 rounded-xl h-lvh">
-                
+  return (<>
+        <div>
+          <div>
+            <Filter/>
+          </div>
+        <div className="">
+          <ListItem title="Documents" type="Folder" ext="folder" iconSize={20}/>
         </div>
-      </>
-    );
-  };
-  
-  export default Main;
+
+        </div>
+    </>);
+};
+
+export default Main;
