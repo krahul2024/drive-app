@@ -10,7 +10,7 @@ A cloud storage web application that allows users to store, manage, and share th
 * Various storage plans supported
 * Search files and folders
 
-**Image Previews**
+**Previews**
 
 ![auth](https://github.com/krahul2024/drive-app/assets/76573313/30986e3c-edec-48c4-bea3-0559f57c8c93)
 
