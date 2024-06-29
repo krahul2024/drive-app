@@ -11,7 +11,8 @@ A cloud storage web application that allows users to securely store, manage, and
 * Search files and folders
 
 **Image Previews**
-![auth-image](https://github.com/krahul2024/drive-app/assets/76573313/356ec726-7c76-45b1-97a0-eb9196b603ae)
+![auth](https://github.com/krahul2024/drive-app/assets/76573313/30986e3c-edec-48c4-bea3-0559f57c8c93)
+
 ![home-page](https://github.com/krahul2024/drive-app/assets/76573313/708da855-0c1d-421c-97a6-bbbfd44fb55e)
 
 
