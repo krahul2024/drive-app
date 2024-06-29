@@ -1,6 +1,6 @@
 
 ### Introduction 
-A cloud storage web application that allows users to securely store, manage, and share their files and folders online.
+A cloud storage web application that allows users to store, manage, and share their files and folders online.
 
 **Features**
 * User login and signup
@@ -11,6 +11,7 @@ A cloud storage web application that allows users to securely store, manage, and
 * Search files and folders
 
 **Image Previews**
+
 ![auth](https://github.com/krahul2024/drive-app/assets/76573313/30986e3c-edec-48c4-bea3-0559f57c8c93)
 
 ![home-page](https://github.com/krahul2024/drive-app/assets/76573313/708da855-0c1d-421c-97a6-bbbfd44fb55e)
